@@ -39,7 +39,7 @@ namespace MartinCostello.SqlLocalDb.Interop
         /// <inheritdoc />
         public IRegistryKey? OpenSubKey(string keyName)
         {
-            RegistryKey key = _key.OpenSubKey(keyName);
+            RegistryKey? key = _key.OpenSubKey(keyName);
             return key == null ? null : new WindowsRegistryKey(key);
         }
     }

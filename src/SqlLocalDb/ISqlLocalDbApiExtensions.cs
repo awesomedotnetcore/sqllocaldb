@@ -193,7 +193,7 @@ namespace MartinCostello.SqlLocalDb
 
             using (var identity = WindowsIdentity.GetCurrent())
             {
-                ownerSid = identity.User.Value;
+                ownerSid = identity.User!.Value;
             }
 
             api.ShareInstance(ownerSid, instanceName, sharedInstanceName);

@@ -64,7 +64,9 @@ namespace MartinCostello.SqlLocalDb.Interop
         /// <summary>
         /// The handle to the native SQL LocalDB API.
         /// </summary>
+#pragma warning disable CA2213
         private SafeLibraryHandle? _handle;
+#pragma warning restore CA2213
 
         /// <summary>
         /// The delegate to the <c>LocalDBCreateInstance</c> LocalDB API function.
@@ -465,7 +467,7 @@ namespace MartinCostello.SqlLocalDb.Interop
 
                 foreach (string versionString in key.GetSubKeyNames())
                 {
-                    if (!Version.TryParse(versionString, out Version version))
+                    if (!Version.TryParse(versionString, out Version? version))
                     {
                         Logger.InvalidRegistryKey(versionString);
                         continue;

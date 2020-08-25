@@ -49,7 +49,9 @@ namespace MartinCostello.SqlLocalDb
         /// <summary>
         /// The native API. This field is read-only.
         /// </summary>
+#pragma warning disable CA2213
         private readonly LocalDbInstanceApi _api;
+#pragma warning restore CA2213
 
         /// <summary>
         /// Whether the instance has been disposed of.
@@ -1294,7 +1296,7 @@ namespace MartinCostello.SqlLocalDb
             {
                 // Determine the offset of the element, and get the string from the array
                 IntPtr offset = new IntPtr(ptr.ToInt64() + (length * i));
-                result[i] = Marshal.PtrToStringAuto(offset);
+                result[i] = Marshal.PtrToStringAuto(offset) !;
             }
 
             return result;
@@ -1311,7 +1313,7 @@ namespace MartinCostello.SqlLocalDb
         private static T MarshalStruct<T>(IntPtr ptr)
             where T : struct
         {
-            return (T)Marshal.PtrToStructure(ptr, typeof(T));
+            return (T)Marshal.PtrToStructure(ptr, typeof(T)) !;
         }
 
         /// <summary>
